@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>P&C Consultoría Integral SAS – Soluciones Estratégicas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <style>
+    /* ===== VARIABLES ===== */
+    :root {
+      --navy:   #0A1628;
+      --navy2:  #112240;
+      --gold:   #C9A84C;
+      --gold2:  #E8C97A;
+      --white:  #F8F6F1;
+      --gray:   #8892A4;
+      --light:  #EAE6DC;
+      --radius: 14px;
+      --trans:  0.35s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 999;
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+      background: rgba(10, 22, 40, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(201,168,76,.15);
+      transition: var(--trans);
+    }
+    header.scrolled {
+      height: 60px;
+      background: rgba(10, 22, 40, 0.98);
+      box-shadow: 0 4px 30px rgba(0,0,0,.4);
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .04em;
+      line-height: 1;
+    }
+    .logo span { color: var(--gold); }
+    font-size: 1.1em;
+    .logo small {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .75rem;
+      letter-spacing: .25em;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-top: -2px;
+    }
+    nav { display: flex; align-items: center; gap: 2.2rem; }
+    nav a {
+      color: var(--white);
+      font-size: .88rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      opacity: .8;
+      transition: var(--trans);
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: var(--trans);
+    }
+    nav a:hover { opacity: 1; }
+    nav a:hover::after { width: 100%; }
+    .btn-nav {
+      background: var(--gold);
+      color: var(--navy) !important;
+      padding: .5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: .82rem !important;
+      opacity: 1 !important;
+      transition: var(--trans);
+    }
+    .btn-nav:hover { background: var(--gold2); transform: translateY(-2px); }
+    .btn-nav::after { display: none !important; }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--trans); }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+    /* mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 70px; left: 0; width: 100%;
+      background: rgba(10,22,40,.98);
+      padding: 2rem 5%;
+      z-index: 998;
+      flex-direction: column; gap: 1.4rem;
+      border-bottom: 1px solid rgba(201,168,76,.15);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--white); font-size: 1rem;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+
+    /* ===== HERO ===== */
+    #inicio {
+      min-height: 100vh;
+      background: var(--navy);
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+      padding: 120px 5% 80px;
+    }
+    /* geometric accents */
+    #inicio::before {
+      content: '';
+      position: absolute; top: -120px; right: -120px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #inicio::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -80px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1200px; margin: auto; width: 100%;
+      position: relative; z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: rgba(201,168,76,.12);
+      border: 1px solid rgba(201,168,76,.3);
+      padding: .3rem .9rem;
+      border-radius: 50px;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(1.3); }
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+      display: block;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 440px;
+      margin-bottom: 2.4rem;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: .85rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: .92rem;
+      letter-spacing: .04em;
+      transition: var(--trans);
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(201,168,76,.3); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      padding: .85rem 2rem;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: .92rem;
+      border: 1px solid rgba(255,255,255,.25);
+      transition: var(--trans);
+      display: inline-flex; align-items: center; gap: .5rem;
+      cursor: pointer;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
+
+    /* hero visual */
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+    }
+    .hero-card-wrap {
+      position: relative; width: 340px; height: 380px;
+    }
+    .hero-card {
+      position: absolute;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(201,168,76,.2);
+      border-radius: var(--radius);
+      backdrop-filter: blur(10px);
+      padding: 1.6rem;
+      color: var(--white);
+    }
+    .hero-card.main {
+      width: 280px; bottom: 0; right: 0;
+      background: rgba(17,34,64,.8);
+    }
+    .hero-card.stat {
+      width: 160px; top: 0; left: 0;
+      text-align: center;
+      background: rgba(201,168,76,.1);
+      border-color: rgba(201,168,76,.4);
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem; font-weight: 700;
+      color: var(--gold); line-height: 1;
+    }
+    .stat-label { font-size: .75rem; color: var(--gray); margin-top: .3rem; }
+    .card-icon {
+      width: 42px; height: 42px;
+      background: rgba(201,168,76,.15);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: .9rem;
+    }
+    .card-title { font-size: .85rem; font-weight: 600; margin-bottom: .4rem; }
+    .card-desc { font-size: .78rem; color: var(--gray); line-height: 1.5; }
+    .hero-badge {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 80px; height: 80px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .65rem; font-weight: 700;
+      color: var(--navy);
+      text-align: center;
+      line-height: 1.2;
+      letter-spacing: .05em;
+      animation: floatBadge 4s ease-in-out infinite;
+      z-index: 2;
+    }
+    @keyframes floatBadge {
+      0%,100% { transform: translate(-50%,-50%) translateY(0); }
+      50% { transform: translate(-50%,-50%) translateY(-8px); }
+    }
+
+    /* ===== SECTION BASE ===== */
+    section { padding: 90px 5%; }
+    .section-label {
+      display: inline-block;
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .8rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 520px;
+    }
+    .container { max-width: 1200px; margin: auto; }
+
+    /* divider */
+    .gold-line {
+      width: 50px; height: 2px;
+      background: var(--gold);
+      margin: .8rem 0 1.4rem;
+    }
+
+    /* ===== SERVICIOS ===== */
+    #servicios { background: var(--white); }
+    .servicios-header { text-align: center; margin-bottom: 3.5rem; }
+    .servicios-header .section-sub { margin: auto; }
+    .servicios-header .gold-line { margin: .8rem auto 1.4rem; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid rgba(10,22,40,.08);
+      border-radius: var(--radius);
+      padding: 2.2rem;
+      position: relative;
+      overflow: hidden;
+      transition: var(--trans);
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--trans);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(10,22,40,.12);
+      border-color: rgba(201,168,76,.3);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, rgba(201,168,76,.15), rgba(201,168,76,.05));
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.4rem;
+      border: 1px solid rgba(201,168,76,.2);
+      transition: var(--trans);
+    }
+    .service-card:hover .service-icon {
+      background: var(--gold);
+      transform: rotate(-5deg) scale(1.1);
+    }
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem; font-weight: 700;
+      margin-bottom: .7rem;
+      color: var(--navy);
+    }
+    .service-desc {
+      font-size: .9rem; color: var(--gray);
+      line-height: 1.7; margin-bottom: 1.4rem;
+    }
+    .service-list { display: flex; flex-direction: column; gap: .5rem; }
+    .service-list li {
+      font-size: .85rem; color: var(--navy);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .service-list li::before {
+      content: '';
+      width: 5px; height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ===== BENEFICIOS ===== */
+    #beneficios {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    #beneficios::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(201,168,76,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .beneficios-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative; z-index: 1;
+    }
+    .beneficios-text .section-title { color: var(--white); }
+    .beneficios-text .section-sub { color: var(--gray); }
+    .beneficios-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    .benefit-item {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(201,168,76,.15);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.4rem;
+      transition: var(--trans);
+    }
+    .benefit-item:hover {
+      background: rgba(201,168,76,.08);
+      border-color: rgba(201,168,76,.4);
+      transform: translateY(-4px);
+    }
+    .benefit-icon { font-size: 1.6rem; margin-bottom: .7rem; }
+    .benefit-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--white); margin-bottom: .3rem;
+    }
+    .benefit-desc { font-size: .8rem; color: var(--gray); line-height: 1.6; }
+
+    /* ===== NOSOTROS ===== */
+    #nosotros {
+      background: linear-gradient(to bottom right, var(--white), #f0ece0);
+    }
+    .nosotros-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .nosotros-visual {
+      position: relative; display: flex; justify-content: center;
+    }
+    .nos-card-bg {
+      width: 320px; height: 360px;
+      background: var(--navy);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+    }
+    .nos-card-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,.15) 0%, transparent 60%);
+    }
+    .nos-inner-grid {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      height: 100%;
+      justify-content: center;
+      position: relative; z-index: 1;
+    }
+    .nos-row {
+      display: flex; align-items: center; gap: 1rem;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(201,168,76,.15);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    .nos-row-icon { font-size: 1.4rem; }
+    .nos-row-text { font-size: .82rem; color: var(--white); line-height: 1.5; }
+    .nos-row-text strong { display: block; color: var(--gold); margin-bottom: .1rem; font-size: .85rem; }
+    .nos-badge {
+      position: absolute;
+      top: -20px; right: -20px;
+      width: 90px; height: 90px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--navy);
+      font-size: .65rem; font-weight: 700;
+      letter-spacing: .06em;
+      text-align: center;
+      line-height: 1.3;
+      box-shadow: 0 8px 24px rgba(201,168,76,.3);
+    }
+
+    /* ===== CONTACTO ===== */
+    #contacto { background: var(--navy); }
+    .contacto-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contacto-text .section-title { color: var(--white); }
+    .contacto-text .section-sub { color: var(--gray); margin-bottom: 2rem; }
+    .contact-info { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+    .contact-info-item {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .contact-info-icon {
+      width: 42px; height: 42px;
+      background: rgba(201,168,76,.12);
+      border: 1px solid rgba(201,168,76,.25);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-info-label { font-size: .75rem; color: var(--gray); margin-bottom: .1rem; }
+    .contact-info-val { font-size: .95rem; color: var(--white); font-weight: 500; }
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: .7rem;
+      background: #25D366;
+      color: #fff;
+      padding: .9rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: .92rem;
+      transition: var(--trans);
+      border: none; cursor: pointer;
+    }
+    .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37,211,102,.3); }
+
+    /* form */
+    .contact-form {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(201,168,76,.15);
+      border-radius: var(--radius);
+      padding: 2.2rem;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: .5rem;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 8px;
+      padding: .8rem 1rem;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .9rem;
+      transition: var(--trans);
+      outline: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(136,146,164,.6); }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+      background: rgba(201,168,76,.06);
+    }
+    .form-group select option { background: var(--navy2); }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .form-error { display: none; font-size: .75rem; color: #ff6b6b; margin-top: .35rem; }
+    .form-group.error input,
+    .form-group.error textarea { border-color: #ff6b6b; }
+    .form-group.error .form-error { display: block; }
+    .btn-submit {
+      width: 100%;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: .9rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: .95rem;
+      cursor: pointer;
+      transition: var(--trans);
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+    }
+    .btn-submit:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(201,168,76,.25); }
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      color: var(--white);
+    }
+    .success-msg .check {
+      font-size: 2.5rem; margin-bottom: .8rem;
+      animation: bounceIn .5s ease;
+    }
+    @keyframes bounceIn {
+      0%   { transform: scale(0); }
+      60%  { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+
+    /* ===== HERRAMIENTAS ===== */
+    #herramientas { background: linear-gradient(to bottom, #060e1a, var(--navy)); padding: 90px 5%; }
+    .herramientas-header { text-align: center; margin-bottom: 3.5rem; }
+    .herramientas-header .section-title { color: var(--white); }
+    .herramientas-header .section-sub { color: var(--gray); margin: auto; }
+    .herramientas-header .gold-line { margin: .8rem auto 1.4rem; }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.6rem; margin-bottom: 3.5rem; }
+    .tool-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(201,168,76,.15);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: var(--trans);
+      display: flex; flex-direction: column;
+    }
+    .tool-card:hover { transform: translateY(-6px); border-color: rgba(201,168,76,.5); background: rgba(201,168,76,.06); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+    .tool-badge {
+      position: absolute; top: 1rem; right: 1rem;
+      font-size: .68rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .25rem .75rem;
+      border-radius: 50px;
+    }
+    .tool-badge.free { background: rgba(37,211,102,.15); color: #25D366; border: 1px solid rgba(37,211,102,.3); }
+    .tool-badge.client { background: rgba(201,168,76,.15); color: var(--gold); border: 1px solid rgba(201,168,76,.3); }
+    .tool-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .tool-name { font-family: "Cormorant Garamond",serif; font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: .4rem; }
+    .tool-tag { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; }
+    .tool-desc { font-size: .88rem; color: var(--gray); line-height: 1.7; flex: 1; margin-bottom: 1.4rem; }
+    .tool-features { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1.6rem; }
+    .tool-features li { font-size: .8rem; color: rgba(248,246,241,.7); display: flex; align-items: center; gap: .5rem; }
+    .tool-features li::before { content: ""; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+    .btn-tool {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      padding: .7rem 1.4rem;
+      border-radius: 50px;
+      font-size: .85rem; font-weight: 600;
+      transition: var(--trans);
+      text-decoration: none;
+      border: none; cursor: pointer;
+    }
+    .btn-tool.open { background: var(--gold); color: var(--navy); }
+    .btn-tool.open:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201,168,76,.3); }
+    .btn-tool.locked { background: rgba(255,255,255,.07); color: var(--gray); border: 1px solid rgba(255,255,255,.12); cursor: default; }
+    .services-tools-link { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    .stl-item {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(201,168,76,.12);
+      border-radius: 10px;
+      padding: 1.2rem 1rem;
+      display: flex; align-items: center; gap: .9rem;
+      transition: var(--trans);
+    }
+    .stl-item:hover { border-color: rgba(201,168,76,.35); background: rgba(201,168,76,.05); }
+    .stl-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .stl-service { font-size: .7rem; color: var(--gray); letter-spacing: .08em; text-transform: uppercase; }
+    .stl-tool { font-size: .9rem; font-weight: 600; color: var(--white); }
+    @media (max-width: 900px) { .services-tools-link { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 540px) { .tools-grid { grid-template-columns: 1fr; } .services-tools-link { grid-template-columns: 1fr; } }
+    /* ===== FOOTER ===== */
+    footer {
+      background: #060e1a;
+      padding: 3rem 5% 1.5rem;
+      border-top: 1px solid rgba(201,168,76,.12);
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 700;
+      color: var(--white);
+      margin-bottom: .6rem;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-desc { font-size: .85rem; color: var(--gray); line-height: 1.7; max-width: 280px; }
+    .footer-col h4 {
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.1rem;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: .6rem; }
+    .footer-col ul a {
+      font-size: .85rem; color: var(--gray);
+      transition: var(--trans);
+    }
+    .footer-col ul a:hover { color: var(--white); padding-left: 4px; }
+    .social-links { display: flex; gap: .8rem; margin-top: 1.2rem; }
+    .social-link {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem; color: var(--gray);
+      transition: var(--trans);
+    }
+    .social-link:hover {
+      background: rgba(201,168,76,.15);
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-3px);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding-top: 1.2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: .8rem;
+    }
+    .footer-bottom p { font-size: .8rem; color: var(--gray); }
+
+    /* ===== WHATSAPP FLOAT ===== */
+    .wa-float {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 58px; height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(37,211,102,.45);
+      z-index: 990;
+      transition: var(--trans);
+      text-decoration: none;
+    }
+    .wa-float:hover { transform: scale(1.12) translateY(-3px); }
+    .wa-float::before {
+      content: '';
+      position: absolute;
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: rgba(37,211,102,.4);
+      animation: waPulse 2.5s ease-out infinite;
+    }
+    @keyframes waPulse {
+      0% { transform: scale(1); opacity: .6; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    /* ===== COUNTER ===== */
+    .counters-bar {
+      background: var(--gold);
+      padding: 2rem 5%;
+    }
+    .counters-inner {
+      max-width: 1200px; margin: auto;
+      display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .counter-item { text-align: center; }
+    .counter-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 700;
+      color: var(--navy); line-height: 1;
+    }
+    .counter-label { font-size: .78rem; color: rgba(10,22,40,.7); margin-top: .2rem; letter-spacing: .06em; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .beneficios-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .beneficios-grid { grid-template-columns: 1fr 1fr; }
+      .nosotros-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .contacto-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 540px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .beneficios-grid { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; }
+      .btn-primary, .btn-outline { text-align: center; justify-content: center; }
+      .counters-inner { justify-content: center; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header id="header">
+  <a href="#inicio" class="logo">
+    P<span>&</span>C
+    <small>Consultoría Integral SAS</small>
+  </a>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#herramientas">Herramientas</a>
+    <a href="#contacto">Contacto</a>
+    <a href="https://wa.me/573228999183" target="_blank" class="btn-nav">📲 WhatsApp</a>
+  </nav>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<!-- mobile nav -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#inicio"    onclick="toggleMenu()">Inicio</a>
+  <a href="#servicios" onclick="toggleMenu()">Servicios</a>
+  <a href="#nosotros"  onclick="toggleMenu()">Nosotros</a>
+  <a href="#herramientas" onclick="toggleMenu()">Herramientas</a>
+  <a href="#contacto"  onclick="toggleMenu()">Contacto</a>
+  <a href="https://wa.me/573228999183" target="_blank" class="btn-nav" style="text-align:center;">📲 WhatsApp</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section id="inicio">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-eyebrow" data-aos="fade-right" data-aos-duration="600">Consultoría Empresarial</div>
+      <h1 class="hero-title" data-aos="fade-right" data-aos-duration="700" data-aos-delay="100">
+        Soluciones estratégicas para el
+        <em>crecimiento empresarial</em>
+      </h1>
+      <p class="hero-sub" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
+        Nos encargamos de la gestión, tú te enfocas en crecer. Tributaria, financiera y administrativa al más alto nivel.
+      </p>
+      <div class="hero-ctas" data-aos="fade-right" data-aos-duration="700" data-aos-delay="300">
+        <a href="#contacto" class="btn-primary">Contáctanos ✦</a>
+        <a href="#servicios" class="btn-outline">Ver servicios →</a>
+      </div>
+    </div>
+    <div class="hero-visual" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+      <div class="hero-card-wrap">
+        <div class="hero-card stat">
+          <div class="stat-num" id="heroStat">10+</div>
+          <div class="stat-label">Años de<br>experiencia</div>
+        </div>
+        <div class="hero-card main">
+          <div class="card-icon">📊</div>
+          <div class="card-title">Gestión Financiera</div>
+          <div class="card-desc">Planeación, flujo de caja y control presupuestal para impulsar tu empresa.</div>
+        </div>
+        <div class="hero-badge">P&C<br>GESTIÓN</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COUNTERS ===================== -->
+<div class="counters-bar">
+  <div class="counters-inner">
+    <div class="counter-item">
+      <div class="counter-num">3</div>
+      <div class="counter-label">Áreas de gestión</div>
+    </div>
+    <div class="counter-item">
+      <div class="counter-num">360°</div>
+      <div class="counter-label">Visión integral del negocio</div>
+    </div>
+    <div class="counter-item">
+      <div class="counter-num">∞</div>
+      <div class="counter-label">Compromiso con tu crecimiento</div>
+    </div>
+    <div class="counter-item">
+      <div class="counter-num">1ª</div>
+      <div class="counter-label">Asesoría inicial sin costo</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SERVICIOS ===================== -->
+<section id="servicios">
+  <div class="container">
+    <div class="servicios-header">
+      <span class="section-label" data-aos="fade-up">Lo que hacemos</span>
+      <div class="gold-line" data-aos="fade-up" data-aos-delay="50"></div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Nuestros Servicios</h2>
+      <p class="section-sub" data-aos="fade-up" data-aos-delay="150">
+        Soluciones integrales diseñadas para optimizar cada área de tu empresa y garantizar su crecimiento sostenible.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Tributaria -->
+      <div class="service-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="service-icon">🧾</div>
+        <h3 class="service-name">Gestión Tributaria</h3>
+        <p class="service-desc">Cumplimiento oportuno y optimización fiscal para que tu empresa pague lo justo y evite sanciones.</p>
+        <ul class="service-list">
+          <li>Declaraciones de impuestos</li>
+          <li>Cumplimiento DIAN</li>
+          <li>Asesoría fiscal estratégica</li>
+          <li>Optimización de impuestos</li>
+        </ul>
+      </div>
+      <!-- Financiera -->
+      <div class="service-card" data-aos="fade-up" data-aos-delay="120">
+        <div class="service-icon">📈</div>
+        <h3 class="service-name">Gestión Financiera</h3>
+        <p class="service-desc">Control total de tus finanzas con planeación estratégica que maximiza rentabilidad y estabilidad.</p>
+        <ul class="service-list">
+          <li>Planeación financiera</li>
+          <li>Análisis de flujo de caja</li>
+          <li>Análisis y control financiero</li>
+          <li>Elaboración de presupuestos</li>
+        </ul>
+      </div>
+      <!-- Administrativa -->
+      <div class="service-card" data-aos="fade-up" data-aos-delay="240">
+        <div class="service-icon">🏢</div>
+        <h3 class="service-name">Gestión Administrativa</h3>
+        <p class="service-desc">Estructuramos y optimizamos los procesos administrativos para que tu organización funcione con eficiencia.</p>
+        <ul class="service-list">
+          <li>Organización de procesos</li>
+          <li>Control y seguimiento</li>
+          <li>Bienestar organizacional</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BENEFICIOS ===================== -->
+<section id="beneficios">
+  <div class="container beneficios-inner">
+    <div class="beneficios-text">
+      <span class="section-label" data-aos="fade-right">Por qué elegirnos</span>
+      <div class="gold-line" data-aos="fade-right" data-aos-delay="50"></div>
+      <h2 class="section-title" style="color:var(--white)" data-aos="fade-right" data-aos-delay="100">
+        Tu empresa merece gestión de alto nivel
+      </h2>
+      <p class="section-sub" data-aos="fade-right" data-aos-delay="150">
+        En P&C Consultoría Integral combinamos experiencia, tecnología y compromiso para entregar resultados medibles y sostenibles.
+      </p>
+    </div>
+    <div class="beneficios-grid">
+      <div class="benefit-item" data-aos="fade-up" data-aos-delay="0">
+        <div class="benefit-icon">⚡</div>
+        <div class="benefit-title">Eficiencia</div>
+        <div class="benefit-desc">Optimizamos tiempos y recursos para maximizar tu productividad.</div>
+      </div>
+      <div class="benefit-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="benefit-icon">🛡️</div>
+        <div class="benefit-title">Confianza</div>
+        <div class="benefit-desc">Transparencia y ética en cada proceso. Tu información, segura.</div>
+      </div>
+      <div class="benefit-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="benefit-icon">🎯</div>
+        <div class="benefit-title">Resultados</div>
+        <div class="benefit-desc">Enfoque en metas concretas con indicadores claros de desempeño.</div>
+      </div>
+      <div class="benefit-item" data-aos="fade-up" data-aos-delay="300">
+        <div class="benefit-icon">🤝</div>
+        <div class="benefit-title">Acompañamiento</div>
+        <div class="benefit-desc">Estamos contigo en cada etapa del crecimiento de tu negocio.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HERRAMIENTAS ===================== -->
+<section id="herramientas">
+  <div class="container">
+    <div class="herramientas-header">
+      <span class="section-label" data-aos="fade-up">Tecnología para tu empresa</span>
+      <div class="gold-line" data-aos="fade-up" data-aos-delay="50"></div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Nuestras Herramientas</h2>
+      <p class="section-sub" data-aos="fade-up" data-aos-delay="150">Desarrollamos aplicaciones web especializadas para optimizar la gestión contable y financiera de nuestros clientes.</p>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card" data-aos="fade-up" data-aos-delay="0">
+        <span class="tool-badge client">Solo clientes</span>
+        <div class="tool-icon">🔄</div>
+        <div class="tool-name">ConciliaX</div>
+        <div class="tool-tag">Gestión Tributaria</div>
+        <p class="tool-desc">Conciliación automática entre facturas DIAN y el Libro Auxiliar. Cruza datos en segundos y detecta diferencias con precisión.</p>
+        <ul class="tool-features">
+          <li>Carga de archivos DIAN y Libro Auxiliar</li>
+          <li>Cruce automático por NIT, valor y fecha</li>
+          <li>Reporte de diferencias exportable</li>
+        </ul>
+        <span class="btn-tool locked">🔒 Exclusivo para clientes</span>
+      </div>
+      <div class="tool-card" data-aos="fade-up" data-aos-delay="120">
+        <span class="tool-badge client">Solo clientes</span>
+        <div class="tool-icon">📈</div>
+        <div class="tool-name">FinAxis</div>
+        <div class="tool-tag">Gestión Financiera</div>
+        <p class="tool-desc">Plataforma de análisis financiero para visualizar indicadores clave, flujo de caja y proyecciones de manera clara e interactiva.</p>
+        <ul class="tool-features">
+          <li>Dashboard de indicadores financieros</li>
+          <li>Análisis de flujo de caja</li>
+          <li>Proyecciones y presupuestos</li>
+        </ul>
+        <span class="btn-tool locked">🔒 Exclusivo para clientes</span>
+      </div>
+      <div class="tool-card" data-aos="fade-up" data-aos-delay="240">
+        <span class="tool-badge free">Gratuito</span>
+        <div class="tool-icon">💳</div>
+        <div class="tool-name">Control de Pagos</div>
+        <div class="tool-tag">Gestión Administrativa</div>
+        <p class="tool-desc">Herramienta web para registrar, organizar y hacer seguimiento a pagos pendientes y realizados de tu empresa.</p>
+        <ul class="tool-features">
+          <li>Registro de pagos y compromisos</li>
+          <li>Seguimiento de vencimientos</li>
+          <li>Acceso libre sin instalación</li>
+        </ul>
+        <a href="https://github.com/stpoveda01-ctrl/Control-de-pagos" target="_blank" class="btn-tool open">Abrir herramienta →</a>
+      </div>
+      <div class="tool-card" data-aos="fade-up" data-aos-delay="360">
+        <span class="tool-badge free">Gratuito</span>
+        <div class="tool-icon">📘</div>
+        <div class="tool-name">ContaCol</div>
+        <div class="tool-tag">Gestión Financiera · PUC Colombia</div>
+        <p class="tool-desc">Sistema de contabilidad completo con el Plan Único de Cuentas (PUC) colombiano. Dashboard, libro diario, balance general y más.</p>
+        <ul class="tool-features">
+          <li>PUC completo (Decreto 2650 de 1993)</li>
+          <li>Balance general y P&amp;G automáticos</li>
+          <li>Flujo de caja y registro de asientos</li>
+        </ul>
+        <a href="https://contabilidad1.vercel.app" target="_blank" class="btn-tool open">Abrir herramienta →</a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-bottom:2rem;" data-aos="fade-up">
+      <p style="font-size:.85rem;color:var(--gray);margin-bottom:1.5rem;">Las herramientas exclusivas se activan con cualquier plan de servicios contratado.</p>
+      <a href="#contacto" class="btn-primary">Contratar y acceder ✦</a>
+    </div>
+    <div data-aos="fade-up" data-aos-delay="100">
+      <p style="font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:1.2rem;">Herramienta por servicio</p>
+      <div class="services-tools-link">
+        <div class="stl-item"><div class="stl-icon">🧾</div><div><div class="stl-service">Gestión Tributaria</div><div class="stl-tool">ConciliaX</div></div></div>
+        <div class="stl-item"><div class="stl-icon">📈</div><div><div class="stl-service">Gestión Financiera</div><div class="stl-tool">FinAxis + ContaCol</div></div></div>
+        <div class="stl-item"><div class="stl-icon">🏢</div><div><div class="stl-service">Gestión Administrativa</div><div class="stl-tool">Control de Pagos</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===================== NOSOTROS ===================== -->
+<section id="nosotros">
+  <div class="container nosotros-inner">
+    <div class="nosotros-visual" data-aos="fade-right" data-aos-duration="800">
+      <div class="nos-card-bg">
+        <div class="nos-inner-grid">
+          <div class="nos-row">
+            <div class="nos-row-icon">🧾</div>
+            <div class="nos-row-text">
+              <strong>Gestión Tributaria</strong>
+              Cumplimiento y optimización fiscal
+            </div>
+          </div>
+          <div class="nos-row">
+            <div class="nos-row-icon">📊</div>
+            <div class="nos-row-text">
+              <strong>Gestión Financiera</strong>
+              Control y planeación estratégica
+            </div>
+          </div>
+          <div class="nos-row">
+            <div class="nos-row-icon">🏢</div>
+            <div class="nos-row-text">
+              <strong>Gestión Administrativa</strong>
+              Eficiencia y estructura organizacional
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nos-badge">
+        Empresa<br>Confiable
+      </div>
+    </div>
+
+    <div data-aos="fade-left" data-aos-duration="800">
+      <span class="section-label">Sobre nosotros</span>
+      <div class="gold-line"></div>
+      <h2 class="section-title">
+        Expertos comprometidos con tu crecimiento
+      </h2>
+      <p style="font-size:.95rem;color:var(--gray);line-height:1.8;margin-bottom:1.2rem;">
+        P&C Consultoría Integral SAS es una firma de consultoría empresarial especializada en gestión tributaria, financiera y administrativa. Trabajamos con empresas de todos los sectores para transformar sus procesos en motores de crecimiento sostenible.
+      </p>
+      <p style="font-size:.95rem;color:var(--gray);line-height:1.8;margin-bottom:2rem;">
+        Nuestro equipo de profesionales cuenta con amplia experiencia en el entorno empresarial colombiano, garantizando el cumplimiento normativo y la optimización de recursos para que tú puedas enfocarte en lo que importa: <strong style="color:var(--navy)">hacer crecer tu negocio</strong>.
+      </p>
+      <a href="#contacto" class="btn-primary" style="display:inline-flex;">Hablemos de tu empresa ✦</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACTO ===================== -->
+<section id="contacto">
+  <div class="container contacto-inner">
+    <div class="contacto-text">
+      <span class="section-label" data-aos="fade-right">Escríbenos</span>
+      <div class="gold-line" data-aos="fade-right" data-aos-delay="50"></div>
+      <h2 class="section-title" style="color:var(--white)" data-aos="fade-right" data-aos-delay="100">
+        ¿Listo para crecer?
+      </h2>
+      <p class="section-sub" data-aos="fade-right" data-aos-delay="150">
+        Contáctanos hoy y recibe una asesoría inicial sin costo. Estamos listos para transformar la gestión de tu empresa.
+      </p>
+      <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📞</div>
+          <div>
+            <div class="contact-info-label">Teléfono / WhatsApp</div>
+            <div class="contact-info-val">322 899 9183</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">🏢</div>
+          <div>
+            <div class="contact-info-label">Empresa</div>
+            <div class="contact-info-val">P&C Consultoría Integral SAS</div>
+          </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📍</div>
+          <div>
+            <div class="contact-info-label">Dirección</div>
+            <div class="contact-info-val">Dg 30B N 30A-67, Cartagena, Colombia</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">🇨🇴</div>
+          <div>
+            <div class="contact-info-label">Cobertura</div>
+            <div class="contact-info-val">Atendemos a nivel nacional</div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <a href="https://wa.me/573228999183?text=Hola!%20Me%20gustaría%20más%20información%20sobre%20sus%20servicios."
+         target="_blank" class="btn-whatsapp" data-aos="fade-right" data-aos-delay="250">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chatear por WhatsApp
+      </a>
+    </div>
+
+    <!-- FORM -->
+    <div data-aos="fade-left" data-aos-delay="100">
+      <div class="contact-form">
+        <div id="formContent">
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:1.4rem;">
+            Solicita tu asesoría gratuita
+          </h3>
+          <div class="form-group" id="fg-nombre">
+            <label>Nombre completo</label>
+            <input type="text" id="nombre" placeholder="Tu nombre">
+            <div class="form-error">Por favor ingresa tu nombre.</div>
+          </div>
+          <div class="form-group" id="fg-email">
+            <label>Correo electrónico</label>
+            <input type="email" id="email" placeholder="correo@empresa.com">
+            <div class="form-error">Ingresa un correo válido.</div>
+          </div>
+          <div class="form-group" id="fg-servicio">
+            <label>Servicio de interés</label>
+            <select id="servicio">
+              <option value="">Selecciona un servicio</option>
+              <option>Gestión Tributaria</option>
+              <option>Gestión Financiera</option>
+              <option>Gestión Administrativa</option>
+              <option>Todos los servicios</option>
+            </select>
+            <div class="form-error">Selecciona un servicio.</div>
+          </div>
+          <div class="form-group" id="fg-mensaje">
+            <label>Mensaje</label>
+            <textarea id="mensaje" placeholder="Cuéntanos sobre tu empresa y en qué podemos ayudarte..."></textarea>
+            <div class="form-error">Por favor escribe un mensaje.</div>
+          </div>
+          <button class="btn-submit" onclick="submitForm()">
+            Enviar mensaje ✦
+          </button>
+        </div>
+        <div class="success-msg" id="successMsg">
+          <div class="check">✅</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--white);margin-bottom:.6rem;">¡Mensaje enviado!</h3>
+          <p style="font-size:.9rem;color:var(--gray);">Nos pondremos en contacto contigo muy pronto. También puedes escribirnos por WhatsApp al <strong style="color:var(--gold)">322 899 9183</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">P<span>&</span>C</div>
+        <p class="footer-desc">P&C Consultoría Integral SAS — Soluciones estratégicas para el crecimiento empresarial.<br><br>📍 Dg 30B N 30A-67, Cartagena, Colombia<br>🇨🇴 Atención a nivel nacional</p>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Facebook">𝓯</a>
+          <a href="#" class="social-link" title="Instagram">◎</a>
+          <a href="#" class="social-link" title="LinkedIn">in</a>
+          <a href="https://wa.me/573228999183" class="social-link" title="WhatsApp">📲</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Gestión Tributaria</a></li>
+          <li><a href="#servicios">Gestión Financiera</a></li>
+          <li><a href="#servicios">Gestión Administrativa</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="https://wa.me/573228999183" target="_blank">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 P&C Consultoría Integral SAS. Todos los derechos reservados.</p>
+      <p style="color:var(--gold);font-size:.78rem;">📞 322 899 9183</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/573228999183?text=Hola!%20Me%20gustaría%20información%20sobre%20sus%20servicios."
+   target="_blank" class="wa-float" title="Chatea con nosotros">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  // ── AOS Init
+  AOS.init({ duration: 700, once: true, offset: 80 });
+
+  // ── Header scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── Mobile menu
+  function toggleMenu() {
+    const m = document.getElementById('mobileMenu');
+    const h = document.getElementById('hamburger');
+    m.classList.toggle('open');
+    h.classList.toggle('open');
+  }
+
+  // ── Counter animation
+  function animateCounters() {
+    document.querySelectorAll('.counter-num[data-target]').forEach(el => {
+      const target = +el.getAttribute('data-target');
+      const suffix = target === 100 ? '%' : '+';
+      let current = 0;
+      const step = target / 60;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.floor(current) + suffix;
+        if (current >= target) clearInterval(timer);
+      }, 20);
+    });
+  }
+
+  // trigger counters when bar enters view
+  const countersBar = document.querySelector('.counters-bar');
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { animateCounters(); obs.disconnect(); }
+  }, { threshold: 0.3 });
+  obs.observe(countersBar);
+
+  // ── Form validation
+  function validateField(id, groupId, condition) {
+    const el   = document.getElementById(id);
+    const fg   = document.getElementById(groupId);
+    const pass = condition(el.value.trim());
+    fg.classList.toggle('error', !pass);
+    return pass;
+  }
+
+  function submitForm() {
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const v1 = validateField('nombre',   'fg-nombre',   v => v.length > 1);
+    const v2 = validateField('email',    'fg-email',    v => emailRe.test(v));
+    const v3 = validateField('servicio', 'fg-servicio', v => v !== '');
+    const v4 = validateField('mensaje',  'fg-mensaje',  v => v.length > 5);
+    if (!(v1 && v2 && v3 && v4)) return;
+
+    // Build WhatsApp link from form data
+    const nombre   = document.getElementById('nombre').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const servicio = document.getElementById('servicio').value;
+    const mensaje  = document.getElementById('mensaje').value.trim();
+    const text = encodeURIComponent(
+      `Hola P&C Consultoría Integral!\n\nNombre: ${nombre}\nEmail: ${email}\nServicio: ${servicio}\nMensaje: ${mensaje}`
+    );
+
+    // Show success & open WhatsApp
+    document.getElementById('formContent').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    setTimeout(() => {
+      window.open(`https://wa.me/573228999183?text=${text}`, '_blank');
+    }, 800);
+  }
+</script>
+</body>
+</html>
